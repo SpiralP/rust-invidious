@@ -39,13 +39,13 @@ pub struct Schema {
 
     pub description: String,
     pub description_html: String,
-    pub published: u64,
+    pub published: i64,
     pub published_text: String,
 
     pub keywords: Vec<String>,
-    pub view_count: u64,
-    pub like_count: u32,
-    pub dislike_count: u32,
+    pub view_count: i64,
+    pub like_count: i32,
+    pub dislike_count: i32,
 
     pub paid: bool,
     pub premium: bool,
@@ -60,13 +60,13 @@ pub struct Schema {
     pub author_thumbnails: Vec<AuthorThumbnail>,
 
     pub sub_count_text: String,
-    pub length_seconds: u32,
+    pub length_seconds: i32,
     pub allow_ratings: bool,
     pub rating: f32,
     pub is_listed: bool,
     pub live_now: bool,
     pub is_upcoming: bool,
-    pub premiere_timestamp: Option<u64>,
+    pub premiere_timestamp: Option<i64>,
 
     pub hls_url: Option<String>,
     pub adaptive_formats: Vec<AdaptiveFormat>,
@@ -87,7 +87,7 @@ pub struct AdaptiveFormat {
     pub clen: String,
     pub lmt: String,
 
-    /// a u32 as a String
+    /// a i32 as a String
     pub projection_type: String,
     pub container: String,
     pub encoding: String,
@@ -124,6 +124,6 @@ pub struct RecommendedVideo {
     pub title: String,
     pub video_thumbnails: Vec<VideoThumbnail>,
     pub author: String,
-    pub length_seconds: u32,
+    pub length_seconds: i32,
     pub view_count_text: String,
 }

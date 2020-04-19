@@ -13,8 +13,8 @@ pub struct ApiError {
 #[serde(rename_all = "camelCase")]
 pub struct AuthorThumbnail {
     pub url: String,
-    pub width: u32,
-    pub height: u32,
+    pub width: i32,
+    pub height: i32,
 }
 
 #[derive(Debug, Deserialize)]
@@ -22,6 +22,6 @@ pub struct AuthorThumbnail {
 pub struct VideoThumbnail {
     pub quality: String,
     pub url: String,
-    pub width: u32,
-    pub height: u32,
+    pub width: i32,
+    pub height: i32,
 }

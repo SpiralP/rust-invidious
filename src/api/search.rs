@@ -25,7 +25,7 @@ pub async fn request(params: Parameters) -> Result<Schema> {
 #[serde(rename_all = "snake_case")]
 pub struct Parameters {
     pub q: Option<String>,
-    pub page: Option<u32>,
+    pub page: Option<i32>,
     pub sort_by: Option<SortBy>,
     pub date: Option<Date>,
     pub duration: Option<Duration>,
@@ -115,10 +115,10 @@ pub struct Video {
     pub video_thumbnails: Vec<VideoThumbnail>,
     pub description: String,
     pub description_html: String,
-    pub view_count: u64,
-    pub published: u64,
+    pub view_count: i64,
+    pub published: i64,
     pub published_text: String,
-    pub length_seconds: u32,
+    pub length_seconds: i32,
     pub live_now: bool,
     pub paid: bool,
     pub premium: bool,
@@ -133,7 +133,7 @@ pub struct Playlist {
     pub author_id: String,
     pub author_url: String,
 
-    pub video_count: u32,
+    pub video_count: i32,
     pub videos: Vec<PlaylistVideo>,
 }
 
@@ -142,7 +142,7 @@ pub struct Playlist {
 pub struct PlaylistVideo {
     pub title: String,
     pub video_id: String,
-    pub length_seconds: u32,
+    pub length_seconds: i32,
     pub video_thumbnails: Vec<VideoThumbnail>,
 }
 
@@ -154,8 +154,8 @@ pub struct Channel {
     pub author_url: String,
 
     pub author_thumbnails: Vec<AuthorThumbnail>,
-    pub sub_count: u32,
-    pub video_count: u32,
+    pub sub_count: i32,
+    pub video_count: i32,
     pub description: String,
     pub description_html: String,
 }
