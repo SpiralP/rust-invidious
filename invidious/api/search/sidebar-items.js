@@ -1,1 +1,1 @@
-initSidebarItems({"enum":[["Date",""],["Duration",""],["Feature",""],["SchemaType",""],["SortBy",""],["Type",""]],"fn":[["request",""]],"struct":[["AuthorThumbnail",""],["Channel",""],["Parameters",""],["Playlist",""],["PlaylistVideo",""],["Thumbnail",""],["Video",""]],"type":[["Schema",""]]});
+initSidebarItems({"enum":[["Date",""],["Duration",""],["Feature",""],["SchemaType",""],["SortBy",""],["Type",""]],"fn":[["request",""]],"struct":[["Channel",""],["Parameters",""],["Playlist",""],["PlaylistVideo",""],["Video",""]],"type":[["Schema",""]]});

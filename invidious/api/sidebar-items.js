@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["search",""]],"struct":[["ApiError",""]]});
+initSidebarItems({"mod":[["search",""],["videos",""]],"struct":[["ApiError",""],["AuthorThumbnail",""],["VideoThumbnail",""]]});
