@@ -169,13 +169,13 @@
 
     <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">description_html</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">published</span>: <span class="ident">u64</span>,
+    <span class="kw">pub</span> <span class="ident">published</span>: <span class="ident">i64</span>,
     <span class="kw">pub</span> <span class="ident">published_text</span>: <span class="ident">String</span>,
 
     <span class="kw">pub</span> <span class="ident">keywords</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">view_count</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">like_count</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">dislike_count</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">view_count</span>: <span class="ident">i64</span>,
+    <span class="kw">pub</span> <span class="ident">like_count</span>: <span class="ident">i32</span>,
+    <span class="kw">pub</span> <span class="ident">dislike_count</span>: <span class="ident">i32</span>,
 
     <span class="kw">pub</span> <span class="ident">paid</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">premium</span>: <span class="ident">bool</span>,
@@ -190,13 +190,13 @@
     <span class="kw">pub</span> <span class="ident">author_thumbnails</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AuthorThumbnail</span><span class="op">&gt;</span>,
 
     <span class="kw">pub</span> <span class="ident">sub_count_text</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">i32</span>,
     <span class="kw">pub</span> <span class="ident">allow_ratings</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">rating</span>: <span class="ident">f32</span>,
     <span class="kw">pub</span> <span class="ident">is_listed</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">live_now</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">is_upcoming</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">premiere_timestamp</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u64</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">premiere_timestamp</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i64</span><span class="op">&gt;</span>,
 
     <span class="kw">pub</span> <span class="ident">hls_url</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">adaptive_formats</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AdaptiveFormat</span><span class="op">&gt;</span>,
@@ -217,7 +217,7 @@
     <span class="kw">pub</span> <span class="ident">clen</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">lmt</span>: <span class="ident">String</span>,
 
-    <span class="doccomment">/// a u32 as a String</span>
+    <span class="doccomment">/// a i32 as a String</span>
     <span class="kw">pub</span> <span class="ident">projection_type</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">container</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">encoding</span>: <span class="ident">String</span>,
@@ -254,7 +254,7 @@
     <span class="kw">pub</span> <span class="ident">title</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">video_thumbnails</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VideoThumbnail</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">author</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">i32</span>,
     <span class="kw">pub</span> <span class="ident">view_count_text</span>: <span class="ident">String</span>,
 }
 </pre></div>

@@ -187,7 +187,7 @@
 <span class="attribute">#[<span class="ident">serde</span>(<span class="ident">rename_all</span> <span class="op">=</span> <span class="string">&quot;snake_case&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Parameters</span> {
     <span class="kw">pub</span> <span class="ident">q</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">page</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">page</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">sort_by</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">SortBy</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">date</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Date</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">duration</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Duration</span><span class="op">&gt;</span>,
@@ -277,10 +277,10 @@
     <span class="kw">pub</span> <span class="ident">video_thumbnails</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VideoThumbnail</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">description_html</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">view_count</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">published</span>: <span class="ident">u64</span>,
+    <span class="kw">pub</span> <span class="ident">view_count</span>: <span class="ident">i64</span>,
+    <span class="kw">pub</span> <span class="ident">published</span>: <span class="ident">i64</span>,
     <span class="kw">pub</span> <span class="ident">published_text</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">i32</span>,
     <span class="kw">pub</span> <span class="ident">live_now</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">paid</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">premium</span>: <span class="ident">bool</span>,
@@ -295,7 +295,7 @@
     <span class="kw">pub</span> <span class="ident">author_id</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">author_url</span>: <span class="ident">String</span>,
 
-    <span class="kw">pub</span> <span class="ident">video_count</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">video_count</span>: <span class="ident">i32</span>,
     <span class="kw">pub</span> <span class="ident">videos</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">PlaylistVideo</span><span class="op">&gt;</span>,
 }
 
@@ -304,7 +304,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PlaylistVideo</span> {
     <span class="kw">pub</span> <span class="ident">title</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">video_id</span>: <span class="ident">String</span>,
-    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">length_seconds</span>: <span class="ident">i32</span>,
     <span class="kw">pub</span> <span class="ident">video_thumbnails</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">VideoThumbnail</span><span class="op">&gt;</span>,
 }
 
@@ -316,8 +316,8 @@
     <span class="kw">pub</span> <span class="ident">author_url</span>: <span class="ident">String</span>,
 
     <span class="kw">pub</span> <span class="ident">author_thumbnails</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AuthorThumbnail</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">sub_count</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">video_count</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">sub_count</span>: <span class="ident">i32</span>,
+    <span class="kw">pub</span> <span class="ident">video_count</span>: <span class="ident">i32</span>,
     <span class="kw">pub</span> <span class="ident">description</span>: <span class="ident">String</span>,
     <span class="kw">pub</span> <span class="ident">description_html</span>: <span class="ident">String</span>,
 }
