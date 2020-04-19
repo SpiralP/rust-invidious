@@ -29,9 +29,6 @@ async fn test_search() {
     assert_eq!(s.author, "8thManDVD.com™ Cartoon Channel");
     assert_eq!(s.author_id, "8thManDVDcom");
     assert_eq!(s.author_url, "/channel/8thManDVDcom");
-
-    println!("{:?}", s.published);
-    println!("{}", s.published_text);
   } else {
     unreachable!()
   }

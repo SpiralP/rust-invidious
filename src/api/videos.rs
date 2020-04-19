@@ -4,7 +4,7 @@ use crate::{
 };
 use serde::{Deserialize, Serialize};
 
-pub async fn request(id: String, params: Parameters) -> Result<Schema> {
+pub async fn request(id: &str, params: Parameters) -> Result<Schema> {
     let client = reqwest::Client::new();
     let bytes = client
         .get(&format!("https://invidio.us/api/v1/videos/{}", id))
@@ -86,7 +86,9 @@ pub struct AdaptiveFormat {
     pub r#type: String,
     pub clen: String,
     pub lmt: String,
-    pub projection_type: u32,
+
+    /// a u32 as a String
+    pub projection_type: String,
     pub container: String,
     pub encoding: String,
     pub quality_label: Option<String>,
