@@ -1,1 +1,2 @@
-pub struct Invidious {}
+pub mod api;
+mod error;
