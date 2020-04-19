@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["api",""]]});
+initSidebarItems({"enum":[["ErrorKind","The kind of an error."]],"mod":[["api",""]],"struct":[["Error","The Error type."]]});
