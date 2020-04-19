@@ -2,40 +2,50 @@ use invidious::api::search;
 
 #[tokio::test]
 async fn test_search() {
-    let response = search::request(search::Parameters {
-        q: Some("buck bunny".to_string()),
-        sort_by: Some(search::SortBy::ViewCount),
-        ..Default::default()
-    })
-    .await
-    .unwrap();
+  assert_eq!(
+    serde_json::to_string_pretty(&search::Feature::_3d).unwrap(),
+    r#""3d""#
+  );
 
-    if let search::SchemaType::Video(s) = &response[0] {
-        assert_eq!(
-            s.title,
-            "LOONEY TUNES (Best of Looney Toons): BUGS BUNNY CARTOON COMPILATION (HD 1080p)"
-        );
-        assert_eq!(s.video_id, "Q8AZ16uBhr8");
-        assert_eq!(s.author, "8thManDVD.com™ Cartoon Channel");
-        assert_eq!(s.author_id, "8thManDVDcom");
-        assert_eq!(s.author_url, "/channel/8thManDVDcom");
+  assert_eq!(
+    serde_json::to_string_pretty(&search::Feature::CreativeCommons).unwrap(),
+    r#""creative_commons""#
+  );
 
-        println!("{:?}", s.published);
-        println!("{}", s.published_text);
-    } else {
-        unreachable!()
-    }
+  let response = search::request(search::Parameters {
+    q: Some("buck bunny".to_string()),
+    sort_by: Some(search::SortBy::ViewCount),
+    ..Default::default()
+  })
+  .await
+  .unwrap();
 
-    let schema = serde_json::from_str::<search::Schema>(CHANNEL_RESPONSE).unwrap();
-    assert!(schema.len() == 1);
+  if let search::SchemaType::Video(s) = &response[0] {
+    assert_eq!(
+      s.title,
+      "LOONEY TUNES (Best of Looney Toons): BUGS BUNNY CARTOON COMPILATION (HD 1080p)"
+    );
+    assert_eq!(s.video_id, "Q8AZ16uBhr8");
+    assert_eq!(s.author, "8thManDVD.com™ Cartoon Channel");
+    assert_eq!(s.author_id, "8thManDVDcom");
+    assert_eq!(s.author_url, "/channel/8thManDVDcom");
 
-    if let search::SchemaType::Channel(s) = &schema[0] {
-        assert_eq!(s.author, "Big Buck Bunny - Topic");
-        assert_eq!(s.author_id, "UCOc-sIYm-eLFmMRKxJqJ3wA");
-        assert_eq!(s.author_url, "/channel/UCOc-sIYm-eLFmMRKxJqJ3wA");
-    } else {
-        unreachable!();
-    }
+    println!("{:?}", s.published);
+    println!("{}", s.published_text);
+  } else {
+    unreachable!()
+  }
+
+  let schema = serde_json::from_str::<search::Schema>(CHANNEL_RESPONSE).unwrap();
+  assert!(schema.len() == 1);
+
+  if let search::SchemaType::Channel(s) = &schema[0] {
+    assert_eq!(s.author, "Big Buck Bunny - Topic");
+    assert_eq!(s.author_id, "UCOc-sIYm-eLFmMRKxJqJ3wA");
+    assert_eq!(s.author_url, "/channel/UCOc-sIYm-eLFmMRKxJqJ3wA");
+  } else {
+    unreachable!();
+  }
 }
 
 const CHANNEL_RESPONSE: &str = r#"[

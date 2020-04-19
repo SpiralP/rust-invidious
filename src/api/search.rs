@@ -1,4 +1,7 @@
-use crate::{api::ApiError, error::*};
+use crate::{
+    api::{ApiError, AuthorThumbnail, VideoThumbnail},
+    error::*,
+};
 use serde::{Deserialize, Serialize};
 
 pub async fn request(params: Parameters) -> Result<Schema> {
@@ -41,10 +44,13 @@ pub enum Feature {
     Hd,
     Subtitles,
     CreativeCommons,
+    #[serde(rename = "3d")]
     _3d,
     Live,
     Purchased,
+    #[serde(rename = "4k")]
     _4k,
+    #[serde(rename = "360")]
     _360,
     Location,
     Hdr,
@@ -106,7 +112,7 @@ pub struct Video {
     pub author: String,
     pub author_id: String,
     pub author_url: String,
-    pub video_thumbnails: Vec<Thumbnail>,
+    pub video_thumbnails: Vec<VideoThumbnail>,
     pub description: String,
     pub description_html: String,
     pub view_count: u64,
@@ -137,7 +143,7 @@ pub struct PlaylistVideo {
     pub title: String,
     pub video_id: String,
     pub length_seconds: u32,
-    pub video_thumbnails: Vec<Thumbnail>,
+    pub video_thumbnails: Vec<VideoThumbnail>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -152,21 +158,4 @@ pub struct Channel {
     pub video_count: u32,
     pub description: String,
     pub description_html: String,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AuthorThumbnail {
-    pub url: String,
-    pub width: u32,
-    pub height: u32,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Thumbnail {
-    pub quality: String,
-    pub url: String,
-    pub width: u32,
-    pub height: u32,
 }
