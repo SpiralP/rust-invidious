@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.18/src/process/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../tokio/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/tokio-0.2.22/src/process/mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>mod.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../tokio/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1076,6 +1077,27 @@
 <span id="1076">1076</span>
 <span id="1077">1077</span>
 <span id="1078">1078</span>
+<span id="1079">1079</span>
+<span id="1080">1080</span>
+<span id="1081">1081</span>
+<span id="1082">1082</span>
+<span id="1083">1083</span>
+<span id="1084">1084</span>
+<span id="1085">1085</span>
+<span id="1086">1086</span>
+<span id="1087">1087</span>
+<span id="1088">1088</span>
+<span id="1089">1089</span>
+<span id="1090">1090</span>
+<span id="1091">1091</span>
+<span id="1092">1092</span>
+<span id="1093">1093</span>
+<span id="1094">1094</span>
+<span id="1095">1095</span>
+<span id="1096">1096</span>
+<span id="1097">1097</span>
+<span id="1098">1098</span>
+<span id="1099">1099</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="doccomment">//! An implementation of asynchronous process management for Tokio.</span>
 <span class="doccomment">//!</span>
@@ -1084,6 +1106,8 @@
 <span class="doccomment">//! functions that create processes. These functions (`spawn`, `status`, `output` and their</span>
 <span class="doccomment">//! variants) return &quot;future aware&quot; types that interoperate with Tokio. The asynchronous process</span>
 <span class="doccomment">//! support is provided through signal handling on Unix and system APIs on Windows.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! [`std::process::Command`]: std::process::Command</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! # Examples</span>
 <span class="doccomment">//!</span>
@@ -1219,6 +1243,9 @@
 <span class="doccomment">/// [output](Command::output).</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// `Command` uses asynchronous versions of some `std` types (for example [`Child`]).</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// [`std::process::Command`]: std::process::Command</span>
+<span class="doccomment">/// [`Child`]: struct@Child</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Command</span> {
     <span class="ident">std</span>: <span class="ident">StdCommand</span>,
@@ -1250,7 +1277,7 @@
     <span class="doccomment">/// The search path to be used may be controlled by setting the</span>
     <span class="doccomment">/// `PATH` environment variable on the Command,</span>
     <span class="doccomment">/// but this has some implementation limitations on Windows</span>
-    <span class="doccomment">/// (see issue rust-lang/rust#37519).</span>
+    <span class="doccomment">/// (see issue [rust-lang/rust#37519]).</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
@@ -1260,6 +1287,8 @@
     <span class="doccomment">/// use tokio::process::Command;</span>
     <span class="doccomment">/// let command = Command::new(&quot;sh&quot;);</span>
     <span class="doccomment">/// ```</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// [rust-lang/rust#37519]: https://github.com/rust-lang/rust/issues/37519</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">S</span>: <span class="ident">AsRef</span><span class="op">&lt;</span><span class="ident">OsStr</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="ident">program</span>: <span class="ident">S</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Command</span> {
         <span class="self">Self</span>::<span class="ident">from</span>(<span class="ident">StdCommand</span>::<span class="ident">new</span>(<span class="ident">program</span>))
     }
@@ -1283,7 +1312,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// To pass multiple arguments see [`args`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`args`]: #method.args</span>
+    <span class="doccomment">/// [`args`]: method@Self::args</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
@@ -1305,7 +1334,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// To pass a single argument see [`arg`].</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// [`arg`]: #method.arg</span>
+    <span class="doccomment">/// [`arg`]: method@Self::arg</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Examples</span>
     <span class="doccomment">///</span>
@@ -1677,7 +1706,7 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">status</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw">impl</span> <span class="ident">Future</span><span class="op">&lt;</span><span class="ident">Output</span> <span class="op">=</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">ExitStatus</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">child</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spawn</span>();
 
-        <span class="kw">async</span> {
+        <span class="ident">async</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">child</span> <span class="op">=</span> <span class="ident">child</span><span class="question-mark">?</span>;
 
             <span class="comment">// Ensure we close any stdio handles so we can&#39;t deadlock</span>
@@ -1687,7 +1716,7 @@
             <span class="ident">child</span>.<span class="ident">stdout</span>.<span class="ident">take</span>();
             <span class="ident">child</span>.<span class="ident">stderr</span>.<span class="ident">take</span>();
 
-            <span class="ident">child</span>.<span class="kw">await</span>
+            <span class="ident">child</span>.<span class="ident">await</span>
         }
     }
 
@@ -1732,7 +1761,7 @@
 
         <span class="kw">let</span> <span class="ident">child</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">spawn</span>();
 
-        <span class="kw">async</span> { <span class="ident">child</span><span class="question-mark">?</span>.<span class="ident">wait_with_output</span>().<span class="kw">await</span> }
+        <span class="ident">async</span> { <span class="ident">child</span><span class="question-mark">?</span>.<span class="ident">wait_with_output</span>().<span class="ident">await</span> }
     }
 }
 
@@ -1780,13 +1809,17 @@
 
     <span class="kw">fn</span> <span class="ident">poll</span>(<span class="kw-2">mut</span> <span class="self">self</span>: <span class="ident">Pin</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="op">&gt;</span>, <span class="ident">cx</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Poll</span><span class="op">&lt;</span><span class="self">Self</span>::<span class="ident">Output</span><span class="op">&gt;</span> {
         <span class="comment">// Keep track of task budget</span>
-        <span class="macro">ready</span><span class="macro">!</span>(<span class="kw">crate</span>::<span class="ident">coop</span>::<span class="ident">poll_proceed</span>(<span class="ident">cx</span>));
+        <span class="kw">let</span> <span class="ident">coop</span> <span class="op">=</span> <span class="macro">ready</span><span class="macro">!</span>(<span class="kw">crate</span>::<span class="ident">coop</span>::<span class="ident">poll_proceed</span>(<span class="ident">cx</span>));
 
         <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">Pin</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">inner</span>).<span class="ident">poll</span>(<span class="ident">cx</span>);
 
         <span class="kw">if</span> <span class="kw">let</span> <span class="ident">Poll</span>::<span class="ident">Ready</span>(<span class="prelude-val">Ok</span>(<span class="kw">_</span>)) <span class="op">=</span> <span class="ident">ret</span> {
             <span class="comment">// Avoid the overhead of trying to kill a reaped process</span>
             <span class="self">self</span>.<span class="ident">kill_on_drop</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        }
+
+        <span class="kw">if</span> <span class="ident">ret</span>.<span class="ident">is_ready</span>() {
+            <span class="ident">coop</span>.<span class="ident">made_progress</span>();
         }
 
         <span class="ident">ret</span>
@@ -1872,13 +1905,13 @@
     <span class="doccomment">/// order to capture the output into this `Output` it is necessary to create</span>
     <span class="doccomment">/// new pipes between parent and child. Use `stdout(Stdio::piped())` or</span>
     <span class="doccomment">/// `stderr(Stdio::piped())`, respectively, when creating a `Command`.</span>
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">wait_with_output</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">wait_with_output</span>(<span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Output</span><span class="op">&gt;</span> {
         <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">future</span>::<span class="ident">try_join3</span>;
 
-        <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_to_end</span><span class="op">&lt;</span><span class="ident">A</span>: <span class="ident">AsyncRead</span> <span class="op">+</span> <span class="ident">Unpin</span><span class="op">&gt;</span>(<span class="ident">io</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_to_end</span><span class="op">&lt;</span><span class="ident">A</span>: <span class="ident">AsyncRead</span> <span class="op">+</span> <span class="ident">Unpin</span><span class="op">&gt;</span>(<span class="ident">io</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">A</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">io</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">vec</span> <span class="op">=</span> <span class="ident">Vec</span>::<span class="ident">new</span>();
             <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="kw-2">mut</span> <span class="ident">io</span>) <span class="op">=</span> <span class="ident">io</span> {
-                <span class="kw">crate</span>::<span class="ident">io</span>::<span class="ident">util</span>::<span class="ident">read_to_end</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">io</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">vec</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+                <span class="kw">crate</span>::<span class="ident">io</span>::<span class="ident">util</span>::<span class="ident">read_to_end</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">io</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">vec</span>).<span class="ident">await</span><span class="question-mark">?</span>;
             }
             <span class="prelude-val">Ok</span>(<span class="ident">vec</span>)
         }
@@ -1887,7 +1920,7 @@
         <span class="kw">let</span> <span class="ident">stdout_fut</span> <span class="op">=</span> <span class="ident">read_to_end</span>(<span class="self">self</span>.<span class="ident">stdout</span>.<span class="ident">take</span>());
         <span class="kw">let</span> <span class="ident">stderr_fut</span> <span class="op">=</span> <span class="ident">read_to_end</span>(<span class="self">self</span>.<span class="ident">stderr</span>.<span class="ident">take</span>());
 
-        <span class="kw">let</span> (<span class="ident">status</span>, <span class="ident">stdout</span>, <span class="ident">stderr</span>) <span class="op">=</span> <span class="ident">try_join3</span>(<span class="self">self</span>, <span class="ident">stdout_fut</span>, <span class="ident">stderr_fut</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> (<span class="ident">status</span>, <span class="ident">stdout</span>, <span class="ident">stderr</span>) <span class="op">=</span> <span class="ident">try_join3</span>(<span class="self">self</span>, <span class="ident">stdout_fut</span>, <span class="ident">stderr_fut</span>).<span class="ident">await</span><span class="question-mark">?</span>;
 
         <span class="prelude-val">Ok</span>(<span class="ident">Output</span> {
             <span class="ident">status</span>,
@@ -1951,6 +1984,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">AsyncRead</span> <span class="kw">for</span> <span class="ident">ChildStdout</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">prepare_uninitialized_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="comment">// https://github.com/rust-lang/rust/blob/09c817eeb29e764cfc12d0a8d94841e3ffe34023/src/libstd/process.rs#L314</span>
+        <span class="bool-val">false</span>
+    }
+
     <span class="kw">fn</span> <span class="ident">poll_read</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>: <span class="ident">Pin</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="op">&gt;</span>,
         <span class="ident">cx</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
@@ -1961,6 +1999,11 @@
 }
 
 <span class="kw">impl</span> <span class="ident">AsyncRead</span> <span class="kw">for</span> <span class="ident">ChildStderr</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">prepare_uninitialized_buffer</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">MaybeUninit</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="comment">// https://github.com/rust-lang/rust/blob/09c817eeb29e764cfc12d0a8d94841e3ffe34023/src/libstd/process.rs#L375</span>
+        <span class="bool-val">false</span>
+    }
+
     <span class="kw">fn</span> <span class="ident">poll_read</span>(
         <span class="kw-2">mut</span> <span class="self">self</span>: <span class="ident">Pin</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span><span class="op">&gt;</span>,
         <span class="ident">cx</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">Context</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>,
@@ -2156,4 +2199,4 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "tokio";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "tokio";</script><script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script><script defer src="../../../search-index.js"></script></body></html>

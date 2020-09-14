@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/h2-0.2.4/src/proto/streams/stream.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>stream.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script src="../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../h2/index.html'><div class='logo-container'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/h2-0.2.6/src/proto/streams/stream.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>stream.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled ><script src="../../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../../h2/index.html'><div class='logo-container rust-logo'><img src='../../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -698,16 +699,16 @@
         <span class="comment">// This is different from the &quot;open&quot; check because reserved streams don&#39;t count</span>
         <span class="comment">// toward the concurrency limit.</span>
         <span class="comment">// See https://httpwg.org/specs/rfc7540.html#rfc.section.5.1.2</span>
-        <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_open</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_push</span>
+        <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_open</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_push</span>
     }
 
     <span class="doccomment">/// Returns true if the stream is closed</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_closed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="comment">// The state has fully transitioned to closed.</span>
-        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_closed</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span>
+        <span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_closed</span>() <span class="op">&amp;&amp;</span>
             <span class="comment">// Because outbound frames transition the stream state before being</span>
             <span class="comment">// buffered, we have to ensure that all frames have been flushed.</span>
-            <span class="self">self</span>.<span class="ident">pending_send</span>.<span class="ident">is_empty</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span>
+            <span class="self">self</span>.<span class="ident">pending_send</span>.<span class="ident">is_empty</span>() <span class="op">&amp;&amp;</span>
             <span class="comment">// Sometimes large data frames are sent out in chunks. After a chunk</span>
             <span class="comment">// of the frame is sent, the remainder is pushed back onto the send</span>
             <span class="comment">// queue to be rescheduled.</span>
@@ -719,13 +720,13 @@
     <span class="doccomment">/// Returns true if the stream is no longer in use</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_released</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="comment">// The stream is closed and fully flushed</span>
-        <span class="self">self</span>.<span class="ident">is_closed</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span>
+        <span class="self">self</span>.<span class="ident">is_closed</span>() <span class="op">&amp;&amp;</span>
             <span class="comment">// There are no more outstanding references to the stream</span>
-            <span class="self">self</span>.<span class="ident">ref_count</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span>
+            <span class="self">self</span>.<span class="ident">ref_count</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span>
             <span class="comment">// The stream is not in any queue</span>
-            <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_send</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_send_capacity</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span>
-            <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_accept</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_window_update</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span>
-            <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_open</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">reset_at</span>.<span class="ident">is_some</span>()
+            <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_send</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_send_capacity</span> <span class="op">&amp;&amp;</span>
+            <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_accept</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_window_update</span> <span class="op">&amp;&amp;</span>
+            <span class="op">!</span><span class="self">self</span>.<span class="ident">is_pending_open</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">reset_at</span>.<span class="ident">is_some</span>()
     }
 
     <span class="doccomment">/// Returns true when the consumer of the stream has dropped all handles</span>
@@ -734,7 +735,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// In this case, a reset should be sent.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_canceled_interest</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">ref_count</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_closed</span>()
+        <span class="self">self</span>.<span class="ident">ref_count</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">state</span>.<span class="ident">is_closed</span>()
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">assign_capacity</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">capacity</span>: <span class="ident">WindowSize</span>) {
@@ -742,7 +743,7 @@
         <span class="self">self</span>.<span class="ident">send_capacity_inc</span> <span class="op">=</span> <span class="bool-val">true</span>;
         <span class="self">self</span>.<span class="ident">send_flow</span>.<span class="ident">assign_capacity</span>(<span class="ident">capacity</span>);
 
-        <span class="ident">log</span>::<span class="macro">trace</span><span class="macro">!</span>(
+        <span class="ident">tracing</span>::<span class="macro">trace</span><span class="macro">!</span>(
             <span class="string">&quot;  assigned capacity to stream; available={}; buffered={}; id={:?}&quot;</span>,
             <span class="self">self</span>.<span class="ident">send_flow</span>.<span class="ident">available</span>(),
             <span class="self">self</span>.<span class="ident">buffered_send_data</span>,
@@ -751,7 +752,7 @@
 
         <span class="comment">// Only notify if the capacity exceeds the amount of buffered data</span>
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">send_flow</span>.<span class="ident">available</span>() <span class="op">&gt;</span> <span class="self">self</span>.<span class="ident">buffered_send_data</span> {
-            <span class="ident">log</span>::<span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;  notifying task&quot;</span>);
+            <span class="ident">tracing</span>::<span class="macro">trace</span><span class="macro">!</span>(<span class="string">&quot;  notifying task&quot;</span>);
             <span class="self">self</span>.<span class="ident">notify_send</span>();
         }
     }
@@ -952,4 +953,4 @@
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../";window.currentCrate = "h2";</script><script src="../../../../aliases.js"></script><script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script><script defer src="../../../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../../";window.currentCrate = "h2";</script><script src="../../../../main.js"></script><script src="../../../../source-script.js"></script><script src="../../../../source-files.js"></script><script defer src="../../../../search-index.js"></script></body></html>

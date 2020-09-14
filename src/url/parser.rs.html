@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.1.1/src/parser.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>parser.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../url/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/url-2.1.1/src/parser.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>parser.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../url/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -2048,7 +2049,7 @@
                 <span class="kw">let</span> (<span class="ident">slashes_count</span>, <span class="ident">remaining</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">count_matching</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">&#39;/&#39;</span> <span class="op">|</span> <span class="string">&#39;\\&#39;</span>));
                 <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">base_url</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">base_url</span> {
                     <span class="kw">if</span> <span class="ident">slashes_count</span> <span class="op">&lt;</span> <span class="number">2</span>
-                        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">base_url</span>.<span class="ident">scheme</span>() <span class="op">=</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>[..<span class="ident">scheme_end</span> <span class="kw">as</span> <span class="ident">usize</span>]
+                        <span class="op">&amp;&amp;</span> <span class="ident">base_url</span>.<span class="ident">scheme</span>() <span class="op">=</span><span class="op">=</span> <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>[..<span class="ident">scheme_end</span> <span class="kw">as</span> <span class="ident">usize</span>]
                     {
                         <span class="comment">// &quot;Cannot-be-a-base&quot; URLs only happen with &quot;not special&quot; schemes.</span>
                         <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">base_url</span>.<span class="ident">cannot_be_a_base</span>());
@@ -2456,7 +2457,7 @@
         <span class="kw">let</span> <span class="ident">host_start</span> <span class="op">=</span> <span class="ident">to_u32</span>(<span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">len</span>())<span class="question-mark">?</span>;
         <span class="kw">let</span> (<span class="ident">host_end</span>, <span class="ident">host</span>, <span class="ident">port</span>, <span class="ident">remaining</span>) <span class="op">=</span>
             <span class="self">self</span>.<span class="ident">parse_host_and_port</span>(<span class="ident">remaining</span>, <span class="ident">scheme_end</span>, <span class="ident">scheme_type</span>)<span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="ident">host</span> <span class="op">=</span><span class="op">=</span> <span class="ident">HostInternal</span>::<span class="prelude-val">None</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">has_authority</span> {
+        <span class="kw">if</span> <span class="ident">host</span> <span class="op">=</span><span class="op">=</span> <span class="ident">HostInternal</span>::<span class="prelude-val">None</span> <span class="op">&amp;&amp;</span> <span class="ident">has_authority</span> {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ParseError</span>::<span class="ident">EmptyHost</span>);
         }
         <span class="comment">// path state</span>
@@ -2508,7 +2509,7 @@
                 <span class="comment">// url is special and c is U+005C (\)</span>
                 <span class="comment">// If @ flag is set and buffer is the empty string, validation error, return failure.</span>
                 <span class="kw">if</span> <span class="kw">let</span> (<span class="prelude-val">Some</span>(<span class="ident">c</span>), <span class="kw">_</span>) <span class="op">=</span> <span class="ident">remaining</span>.<span class="ident">split_first</span>() {
-                    <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;/&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;?&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;#&#39;</span> <span class="op">|</span><span class="op">|</span> (<span class="ident">scheme_type</span>.<span class="ident">is_special</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\\&#39;</span>) {
+                    <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;/&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;?&#39;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;#&#39;</span> <span class="op">|</span><span class="op">|</span> (<span class="ident">scheme_type</span>.<span class="ident">is_special</span>() <span class="op">&amp;&amp;</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;\\&#39;</span>) {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ParseError</span>::<span class="ident">EmptyHost</span>);
                     }
                 }
@@ -2523,7 +2524,7 @@
         <span class="kw">while</span> <span class="ident">userinfo_char_count</span> <span class="op">&gt;</span> <span class="number">0</span> {
             <span class="kw">let</span> (<span class="ident">c</span>, <span class="ident">utf8_c</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">next_utf8</span>().<span class="ident">unwrap</span>();
             <span class="ident">userinfo_char_count</span> <span class="op">-</span><span class="op">=</span> <span class="number">1</span>;
-            <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;:&#39;</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">username_end</span>.<span class="ident">is_none</span>() {
+            <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;:&#39;</span> <span class="op">&amp;&amp;</span> <span class="ident">username_end</span>.<span class="ident">is_none</span>() {
                 <span class="comment">// Start parsing password</span>
                 <span class="ident">username_end</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">to_u32</span>(<span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">len</span>())<span class="question-mark">?</span>);
                 <span class="comment">// We don&#39;t add a colon if the password is empty</span>
@@ -2629,7 +2630,7 @@
                 <span class="ident">host_str</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">input_str</span>[..<span class="ident">bytes</span>]
             }
         }
-        <span class="kw">if</span> <span class="ident">scheme_type</span> <span class="op">=</span><span class="op">=</span> <span class="ident">SchemeType</span>::<span class="ident">SpecialNotFile</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">host_str</span>.<span class="ident">is_empty</span>() {
+        <span class="kw">if</span> <span class="ident">scheme_type</span> <span class="op">=</span><span class="op">=</span> <span class="ident">SchemeType</span>::<span class="ident">SpecialNotFile</span> <span class="op">&amp;&amp;</span> <span class="ident">host_str</span>.<span class="ident">is_empty</span>() {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ParseError</span>::<span class="ident">EmptyHost</span>);
         }
         <span class="kw">if</span> <span class="op">!</span><span class="ident">scheme_type</span>.<span class="ident">is_special</span>() {
@@ -2725,7 +2726,7 @@
                     <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ParseError</span>::<span class="ident">InvalidPort</span>);
                 }
                 <span class="ident">has_any_digit</span> <span class="op">=</span> <span class="bool-val">true</span>;
-            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">context</span> <span class="op">=</span><span class="op">=</span> <span class="ident">Context</span>::<span class="ident">UrlParser</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">&#39;/&#39;</span> <span class="op">|</span> <span class="string">&#39;\\&#39;</span> <span class="op">|</span> <span class="string">&#39;?&#39;</span> <span class="op">|</span> <span class="string">&#39;#&#39;</span>) {
+            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">context</span> <span class="op">=</span><span class="op">=</span> <span class="ident">Context</span>::<span class="ident">UrlParser</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">&#39;/&#39;</span> <span class="op">|</span> <span class="string">&#39;\\&#39;</span> <span class="op">|</span> <span class="string">&#39;?&#39;</span> <span class="op">|</span> <span class="string">&#39;#&#39;</span>) {
                 <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ParseError</span>::<span class="ident">InvalidPort</span>);
             } <span class="kw">else</span> {
                 <span class="kw">break</span>;
@@ -2799,7 +2800,7 @@
                         <span class="kw">break</span>;
                     }
                     <span class="string">&#39;\\&#39;</span> <span class="kw">if</span> <span class="self">self</span>.<span class="ident">context</span> <span class="op">!</span><span class="op">=</span> <span class="ident">Context</span>::<span class="ident">PathSegmentSetter</span>
-                        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">scheme_type</span>.<span class="ident">is_special</span>() <span class="op">=</span><span class="op">&gt;</span>
+                        <span class="op">&amp;&amp;</span> <span class="ident">scheme_type</span>.<span class="ident">is_special</span>() <span class="op">=</span><span class="op">&gt;</span>
                     {
                         <span class="self">self</span>.<span class="ident">log_violation</span>(<span class="ident">SyntaxViolation</span>::<span class="ident">Backslash</span>);
                         <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">push</span>(<span class="string">&#39;/&#39;</span>);
@@ -2840,14 +2841,14 @@
                     <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">as_bytes</span>()[<span class="ident">segment_start</span> <span class="op">-</span> <span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">b&#39;/&#39;</span>);
                     <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">truncate</span>(<span class="ident">segment_start</span>);
                     <span class="kw">if</span> <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">ends_with</span>(<span class="string">&quot;/&quot;</span>)
-                        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">Parser</span>::<span class="ident">last_slash_can_be_removed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>, <span class="ident">path_start</span>)
+                        <span class="op">&amp;&amp;</span> <span class="ident">Parser</span>::<span class="ident">last_slash_can_be_removed</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>, <span class="ident">path_start</span>)
                     {
                         <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">pop</span>();
                     }
                     <span class="self">self</span>.<span class="ident">shorten_path</span>(<span class="ident">scheme_type</span>, <span class="ident">path_start</span>);
 
                     <span class="comment">// and then if neither c is U+002F (/), nor url is special and c is U+005C (\), append the empty string to url’s path.</span>
-                    <span class="kw">if</span> <span class="ident">ends_with_slash</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">ends_with</span>(<span class="string">&quot;/&quot;</span>) {
+                    <span class="kw">if</span> <span class="ident">ends_with_slash</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">ends_with</span>(<span class="string">&quot;/&quot;</span>) {
                         <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">push</span>(<span class="string">&#39;/&#39;</span>);
                     }
                 }
@@ -2861,7 +2862,7 @@
                 }
                 <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="comment">// If url’s scheme is &quot;file&quot;, url’s path is empty, and buffer is a Windows drive letter, then</span>
-                    <span class="kw">if</span> <span class="ident">scheme_type</span>.<span class="ident">is_file</span>() <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">is_windows_drive_letter</span>(<span class="ident">segment_before_slash</span>) {
+                    <span class="kw">if</span> <span class="ident">scheme_type</span>.<span class="ident">is_file</span>() <span class="op">&amp;&amp;</span> <span class="ident">is_windows_drive_letter</span>(<span class="ident">segment_before_slash</span>) {
                         <span class="comment">// Replace the second code point in buffer with U+003A (:).</span>
                         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="ident">segment_before_slash</span>.<span class="ident">chars</span>().<span class="ident">nth</span>(<span class="number">0</span>) {
                             <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">truncate</span>(<span class="ident">segment_start</span>);
@@ -2902,7 +2903,7 @@
             <span class="comment">// Do not remove the root slash</span>
             <span class="ident">segment_before_start</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">path_start</span>
                 <span class="comment">// Or a windows drive letter slash</span>
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="ident">path_starts_with_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="ident">serialization</span>[<span class="ident">segment_before_start</span>..])
+                <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="ident">path_starts_with_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="ident">serialization</span>[<span class="ident">segment_before_start</span>..])
         } <span class="kw">else</span> {
             <span class="bool-val">false</span>
         }
@@ -2916,7 +2917,7 @@
         }
         <span class="comment">// If url’s scheme is &quot;file&quot;, path’s size is 1, and path[0] is a normalized Windows drive letter, then return.</span>
         <span class="kw">if</span> <span class="ident">scheme_type</span>.<span class="ident">is_file</span>()
-            <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">is_normalized_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>[<span class="ident">path_start</span>..])
+            <span class="op">&amp;&amp;</span> <span class="ident">is_normalized_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>[<span class="ident">path_start</span>..])
         {
             <span class="kw">return</span>;
         }
@@ -2932,7 +2933,7 @@
             <span class="kw">let</span> <span class="ident">segment_start</span> <span class="op">=</span> <span class="ident">path_start</span> <span class="op">+</span> <span class="ident">slash_position</span> <span class="op">+</span> <span class="number">1</span>;
             <span class="comment">// Don’t pop a Windows drive letter</span>
             <span class="kw">if</span> <span class="op">!</span>(<span class="ident">scheme_type</span>.<span class="ident">is_file</span>()
-                <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">is_normalized_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>[<span class="ident">segment_start</span>..]))
+                <span class="op">&amp;&amp;</span> <span class="ident">is_normalized_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">serialization</span>[<span class="ident">segment_start</span>..]))
             {
                 <span class="self">self</span>.<span class="ident">serialization</span>.<span class="ident">truncate</span>(<span class="ident">segment_start</span>);
             }
@@ -3023,7 +3024,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">query</span> <span class="op">=</span> <span class="ident">String</span>::<span class="ident">new</span>(); <span class="comment">// FIXME: use a streaming decoder instead</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">remaining</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="ident">input</span>.<span class="ident">next</span>() {
-            <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;#&#39;</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">context</span> <span class="op">=</span><span class="op">=</span> <span class="ident">Context</span>::<span class="ident">UrlParser</span> {
+            <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;#&#39;</span> <span class="op">&amp;&amp;</span> <span class="self">self</span>.<span class="ident">context</span> <span class="op">=</span><span class="op">=</span> <span class="ident">Context</span>::<span class="ident">UrlParser</span> {
                 <span class="ident">remaining</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">input</span>);
                 <span class="kw">break</span>;
             } <span class="kw">else</span> {
@@ -3083,7 +3084,7 @@
             <span class="kw">if</span> <span class="ident">c</span> <span class="op">=</span><span class="op">=</span> <span class="string">&#39;%&#39;</span> {
                 <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">input</span> <span class="op">=</span> <span class="ident">input</span>.<span class="ident">clone</span>();
                 <span class="kw">if</span> <span class="op">!</span><span class="macro">matches</span><span class="macro">!</span>((<span class="ident">input</span>.<span class="ident">next</span>(), <span class="ident">input</span>.<span class="ident">next</span>()), (<span class="prelude-val">Some</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="ident">b</span>))
-                             <span class="kw">if</span> <span class="ident">is_ascii_hex_digit</span>(<span class="ident">a</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">is_ascii_hex_digit</span>(<span class="ident">b</span>))
+                             <span class="kw">if</span> <span class="ident">is_ascii_hex_digit</span>(<span class="ident">a</span>) <span class="op">&amp;&amp;</span> <span class="ident">is_ascii_hex_digit</span>(<span class="ident">b</span>))
                 {
                     <span class="ident">vfn</span>(<span class="ident">SyntaxViolation</span>::<span class="ident">PercentDecode</span>)
                 }
@@ -3153,21 +3154,21 @@
 }
 
 <span class="kw">fn</span> <span class="ident">is_normalized_windows_drive_letter</span>(<span class="ident">segment</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    <span class="ident">is_windows_drive_letter</span>(<span class="ident">segment</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">segment</span>.<span class="ident">as_bytes</span>()[<span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">b&#39;:&#39;</span>
+    <span class="ident">is_windows_drive_letter</span>(<span class="ident">segment</span>) <span class="op">&amp;&amp;</span> <span class="ident">segment</span>.<span class="ident">as_bytes</span>()[<span class="number">1</span>] <span class="op">=</span><span class="op">=</span> <span class="string">b&#39;:&#39;</span>
 }
 
 <span class="doccomment">/// Wether the scheme is file:, the path has a single segment, and that segment</span>
 <span class="doccomment">/// is a Windows drive letter</span>
 <span class="attribute">#[<span class="ident">inline</span>]</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_windows_drive_letter</span>(<span class="ident">segment</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
-    <span class="ident">segment</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="number">2</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">starts_with_windows_drive_letter</span>(<span class="ident">segment</span>)
+    <span class="ident">segment</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="number">2</span> <span class="op">&amp;&amp;</span> <span class="ident">starts_with_windows_drive_letter</span>(<span class="ident">segment</span>)
 }
 
 <span class="doccomment">/// Wether path starts with a root slash</span>
 <span class="doccomment">/// and a windows drive letter eg: &quot;/c:&quot; or &quot;/a:/&quot;</span>
 <span class="kw">fn</span> <span class="ident">path_starts_with_windows_drive_letter</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">c</span>) <span class="op">=</span> <span class="ident">s</span>.<span class="ident">as_bytes</span>().<span class="ident">get</span>(<span class="number">0</span>) {
-        <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">b&#39;/&#39;</span> <span class="op">|</span> <span class="string">b&#39;\\&#39;</span> <span class="op">|</span> <span class="string">b&#39;?&#39;</span> <span class="op">|</span> <span class="string">b&#39;#&#39;</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">starts_with_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>[<span class="number">1</span>..])
+        <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">b&#39;/&#39;</span> <span class="op">|</span> <span class="string">b&#39;\\&#39;</span> <span class="op">|</span> <span class="string">b&#39;?&#39;</span> <span class="op">|</span> <span class="string">b&#39;#&#39;</span>) <span class="op">&amp;&amp;</span> <span class="ident">starts_with_windows_drive_letter</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>[<span class="number">1</span>..])
     } <span class="kw">else</span> {
         <span class="bool-val">false</span>
     }
@@ -3175,9 +3176,9 @@
 
 <span class="kw">fn</span> <span class="ident">starts_with_windows_drive_letter</span>(<span class="ident">s</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
     <span class="ident">s</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span>
-        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="ident">ascii_alpha</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">char</span>)
-        <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()[<span class="number">1</span>], <span class="string">b&#39;:&#39;</span> <span class="op">|</span> <span class="string">b&#39;|&#39;</span>)
-        <span class="kw-2">&amp;</span><span class="op">&amp;</span> (<span class="ident">s</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="number">2</span> <span class="op">|</span><span class="op">|</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()[<span class="number">2</span>], <span class="string">b&#39;/&#39;</span> <span class="op">|</span> <span class="string">b&#39;\\&#39;</span> <span class="op">|</span> <span class="string">b&#39;?&#39;</span> <span class="op">|</span> <span class="string">b&#39;#&#39;</span>))
+        <span class="op">&amp;&amp;</span> <span class="ident">ascii_alpha</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()[<span class="number">0</span>] <span class="kw">as</span> <span class="ident">char</span>)
+        <span class="op">&amp;&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()[<span class="number">1</span>], <span class="string">b&#39;:&#39;</span> <span class="op">|</span> <span class="string">b&#39;|&#39;</span>)
+        <span class="op">&amp;&amp;</span> (<span class="ident">s</span>.<span class="ident">len</span>() <span class="op">=</span><span class="op">=</span> <span class="number">2</span> <span class="op">|</span><span class="op">|</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()[<span class="number">2</span>], <span class="string">b&#39;/&#39;</span> <span class="op">|</span> <span class="string">b&#39;\\&#39;</span> <span class="op">|</span> <span class="string">b&#39;?&#39;</span> <span class="op">|</span> <span class="string">b&#39;#&#39;</span>))
 }
 
 <span class="doccomment">/// https://url.spec.whatwg.org/#start-with-a-windows-drive-letter</span>
@@ -3187,15 +3188,15 @@
         <span class="comment">// its first two code points are a Windows drive letter</span>
         <span class="comment">// its third code point is U+002F (/), U+005C (\), U+003F (?), or U+0023 (#).</span>
         (<span class="prelude-val">Some</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="ident">b</span>), <span class="prelude-val">Some</span>(<span class="ident">c</span>))
-            <span class="kw">if</span> <span class="ident">ascii_alpha</span>(<span class="ident">a</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">b</span>, <span class="string">&#39;:&#39;</span> <span class="op">|</span> <span class="string">&#39;|&#39;</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">&#39;/&#39;</span> <span class="op">|</span> <span class="string">&#39;\\&#39;</span> <span class="op">|</span> <span class="string">&#39;?&#39;</span> <span class="op">|</span> <span class="string">&#39;#&#39;</span>) <span class="op">=</span><span class="op">&gt;</span>
+            <span class="kw">if</span> <span class="ident">ascii_alpha</span>(<span class="ident">a</span>) <span class="op">&amp;&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">b</span>, <span class="string">&#39;:&#39;</span> <span class="op">|</span> <span class="string">&#39;|&#39;</span>) <span class="op">&amp;&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">c</span>, <span class="string">&#39;/&#39;</span> <span class="op">|</span> <span class="string">&#39;\\&#39;</span> <span class="op">|</span> <span class="string">&#39;?&#39;</span> <span class="op">|</span> <span class="string">&#39;#&#39;</span>) <span class="op">=</span><span class="op">&gt;</span>
         {
             <span class="bool-val">true</span>
         }
         <span class="comment">// its first two code points are a Windows drive letter</span>
         <span class="comment">// its length is 2</span>
-        (<span class="prelude-val">Some</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="ident">b</span>), <span class="prelude-val">None</span>) <span class="kw">if</span> <span class="ident">ascii_alpha</span>(<span class="ident">a</span>) <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">b</span>, <span class="string">&#39;:&#39;</span> <span class="op">|</span> <span class="string">&#39;|&#39;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
+        (<span class="prelude-val">Some</span>(<span class="ident">a</span>), <span class="prelude-val">Some</span>(<span class="ident">b</span>), <span class="prelude-val">None</span>) <span class="kw">if</span> <span class="ident">ascii_alpha</span>(<span class="ident">a</span>) <span class="op">&amp;&amp;</span> <span class="macro">matches</span><span class="macro">!</span>(<span class="ident">b</span>, <span class="string">&#39;:&#39;</span> <span class="op">|</span> <span class="string">&#39;|&#39;</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">true</span>,
         <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="bool-val">false</span>,
     }
 }
 </pre></div>
-</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "url";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "url";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
