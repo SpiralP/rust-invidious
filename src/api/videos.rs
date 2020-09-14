@@ -52,7 +52,7 @@ pub struct Schema {
     pub is_family_friendly: bool,
     pub allowed_regions: Vec<String>,
     pub genre: String,
-    pub genre_url: String,
+    pub genre_url: Option<String>,
 
     pub author: String,
     pub author_id: String,
