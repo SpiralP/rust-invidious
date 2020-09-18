@@ -27,8 +27,8 @@ async fn test_search() {
     );
     assert_eq!(s.video_id, "Q8AZ16uBhr8");
     assert_eq!(s.author, "8thManDVD.com™ Cartoon Channel");
-    assert_eq!(s.author_id, "8thManDVDcom");
-    assert_eq!(s.author_url, "/channel/8thManDVDcom");
+    assert_eq!(s.author_id, "UCRL3LmQvt3G0d5UFnLPUKNA");
+    assert_eq!(s.author_url, "/channel/UCRL3LmQvt3G0d5UFnLPUKNA");
   } else {
     unreachable!()
   }

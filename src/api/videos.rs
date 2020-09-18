@@ -89,8 +89,8 @@ pub struct AdaptiveFormat {
 
     /// a i32 as a String
     pub projection_type: String,
-    pub container: String,
-    pub encoding: String,
+    pub container: Option<String>,
+    pub encoding: Option<String>,
     pub quality_label: Option<String>,
     pub resolution: Option<String>,
 }
