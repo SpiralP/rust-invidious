@@ -1,4 +1,5 @@
 (function() {var implementors = {};
+implementors["hyper"] = [{"text":"impl AsRawFd for AddrStream","synthetic":false,"types":[]}];
 implementors["mio"] = [{"text":"impl AsRawFd for Poll","synthetic":false,"types":[]},{"text":"impl AsRawFd for TcpStream","synthetic":false,"types":[]},{"text":"impl AsRawFd for TcpListener","synthetic":false,"types":[]},{"text":"impl AsRawFd for UdpSocket","synthetic":false,"types":[]}];
 implementors["mio_uds"] = [{"text":"impl AsRawFd for UnixDatagram","synthetic":false,"types":[]},{"text":"impl AsRawFd for UnixListener","synthetic":false,"types":[]},{"text":"impl AsRawFd for UnixStream","synthetic":false,"types":[]}];
 implementors["net2"] = [{"text":"impl AsRawFd for TcpBuilder","synthetic":false,"types":[]},{"text":"impl AsRawFd for UdpBuilder","synthetic":false,"types":[]}];

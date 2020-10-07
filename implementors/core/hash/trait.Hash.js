@@ -16,7 +16,6 @@ implementors["openssl"] = [{"text":"impl Hash for TimeDiff","synthetic":false,"t
 implementors["proc_macro2"] = [{"text":"impl Hash for Ident","synthetic":false,"types":[]}];
 implementors["signal_hook_registry"] = [{"text":"impl Hash for SigId","synthetic":false,"types":[]}];
 implementors["syn"] = [{"text":"impl Hash for Member","synthetic":false,"types":[]},{"text":"impl Hash for Index","synthetic":false,"types":[]},{"text":"impl Hash for Lifetime","synthetic":false,"types":[]}];
-implementors["time"] = [{"text":"impl Hash for Duration","synthetic":false,"types":[]},{"text":"impl Hash for Timespec","synthetic":false,"types":[]},{"text":"impl Hash for Tm","synthetic":false,"types":[]}];
 implementors["tinyvec"] = [{"text":"impl&lt;A:&nbsp;Array&gt; Hash for ArrayVec&lt;A&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;A::Item: Hash,&nbsp;</span>","synthetic":false,"types":[]},{"text":"impl&lt;A:&nbsp;Array&gt; Hash for TinyVec&lt;A&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;A::Item: Hash,&nbsp;</span>","synthetic":false,"types":[]}];
 implementors["tokio"] = [{"text":"impl Hash for UCred","synthetic":false,"types":[]},{"text":"impl Hash for Instant","synthetic":false,"types":[]}];
 implementors["tokio_util"] = [{"text":"impl Hash for BytesCodec","synthetic":false,"types":[]},{"text":"impl Hash for LinesCodec","synthetic":false,"types":[]}];
