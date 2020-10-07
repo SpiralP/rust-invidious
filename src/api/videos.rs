@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 pub async fn request(id: &str, params: Parameters) -> Result<Schema> {
     let client = reqwest::Client::new();
     let bytes = client
-        .get(&format!("https://invidio.us/api/v1/videos/{}", id))
+        .get(&format!("https://invidious.xyz/api/v1/videos/{}", id))
         .query(&params)
         .send()
         .await?
