@@ -5,10 +5,10 @@ authors = ["SpiralP <spiral.palmer@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-error-chain = "0.12.4"
-reqwest = "0.10.8"
-serde = { version = "1.0.116", features = ["derive"] }
-serde_json = "1.0.57"
+error-chain = "0.12"
+reqwest = "0.10"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 
 [dev-dependencies]
-tokio = { version = "0.2.22", features = ["full"] }
+tokio = { version = "0.2", features = ["full"] }
