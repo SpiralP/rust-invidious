@@ -162,17 +162,19 @@
 <span id="159">159</span>
 <span id="160">160</span>
 <span id="161">161</span>
+<span id="162">162</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">api</span>::{<span class="ident">ApiError</span>, <span class="ident">AuthorThumbnail</span>, <span class="ident">VideoThumbnail</span>},
     <span class="ident">error</span>::<span class="kw-2">*</span>,
+    <span class="ident">API_URL</span>,
 };
 <span class="kw">use</span> <span class="ident">serde</span>::{<span class="ident">Deserialize</span>, <span class="ident">Serialize</span>};
 
 <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">request</span>(<span class="ident">params</span>: <span class="ident">Parameters</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Schema</span><span class="op">&gt;</span> {
     <span class="kw">let</span> <span class="ident">client</span> <span class="op">=</span> <span class="ident">reqwest</span>::<span class="ident">Client</span>::<span class="ident">new</span>();
     <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">client</span>
-        .<span class="ident">get</span>(<span class="string">&quot;https://invidious.xyz/api/v1/search&quot;</span>)
+        .<span class="ident">get</span>(<span class="kw-2">&amp;</span><span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{}/search&quot;</span>, <span class="ident">API_URL</span>))
         .<span class="ident">query</span>(<span class="kw-2">&amp;</span><span class="ident">params</span>)
         .<span class="ident">send</span>()
         .<span class="ident">await</span><span class="question-mark">?</span>
