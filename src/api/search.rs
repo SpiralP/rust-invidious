@@ -1,13 +1,14 @@
 use crate::{
     api::{ApiError, AuthorThumbnail, VideoThumbnail},
     error::*,
+    API_URL,
 };
 use serde::{Deserialize, Serialize};
 
 pub async fn request(params: Parameters) -> Result<Schema> {
     let client = reqwest::Client::new();
     let bytes = client
-        .get("https://invidious.xyz/api/v1/search")
+        .get(&format!("{}/search", API_URL))
         .query(&params)
         .send()
         .await?
